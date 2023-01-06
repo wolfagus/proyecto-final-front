@@ -1,5 +1,10 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Admin from '../pages/Admin';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
+import AboutUs from '../pages/AboutUs';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 // import { useEffect } from 'react';
 
 const PublicRoutes = () => {
