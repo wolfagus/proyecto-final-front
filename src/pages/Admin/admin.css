@@ -2,8 +2,8 @@
 
 body {
     font-family: 'Rubik', sans-serif;
+    background-color: rgb(69, 59, 41);
 }
-
 .flex {
     display: flex;
 }
@@ -23,5 +23,20 @@ body {
 .sidebar li, a {
     margin-bottom: 1rem;
     text-decoration: none;
+    color: aliceblue;
     padding: 1rem;
+}
+
+.sidebar li, a:hover {
+    color: rgb(30, 22, 13);
+}
+.tableUser {
+    text-align: center;
+}
+.headUser {
+    color: rgb(245, 245, 245);
+}
+
+.headUser th {
+    background-color: rgb(195, 39, 39);
 }
