@@ -3,7 +3,7 @@ import Admin from '../pages/Admin';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import AboutUs from '../pages/AboutUs';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer';
 // import { useEffect } from 'react';
 
@@ -20,7 +20,7 @@ const PublicRoutes = () => {
     // }, []);
     return (
       <>
-        {/* <Navbar title="Rolling Code <>" /> */}
+        <Navbar title="Rolling Code <>" />
         <Routes>
           {/* <Route path="/" element={<Home />} />
           <Route path="/verify-account" element={<VerifyAccount />} />
@@ -36,7 +36,7 @@ const PublicRoutes = () => {
           />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </>
     );
   };
