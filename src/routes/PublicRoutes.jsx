@@ -3,7 +3,7 @@ import Admin from "../pages/Admin/Admin";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import AboutUs from "../pages/AboutUs";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer";
 import PrivateRoutes from "./PrivateRoutes";
 import AdminUsers from "../pages/Admin/AdminUsers";
@@ -24,12 +24,12 @@ const PublicRoutes = () => {
   // }, []);
   return (
     <>
-      {/* <Navbar title="Rolling Code <>" /> */}
+      <Navbar title="Rolling Code <>" />
       <Routes>
         {/* <Route path="/" element={<Home />} />
           <Route path="/verify-account" element={<VerifyAccount />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/about-us" element={<AboutUs />} />
         {/* <PrivateRoutes> */}
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/clients" element={<AdminUsers />} />
@@ -44,7 +44,7 @@ const PublicRoutes = () => {
         {/* </PrivateRoutes> */}
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
