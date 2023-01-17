@@ -5,7 +5,8 @@ import { deleteProduct, getAllProducts } from '../../services/productService.js'
 import { Button, Container, Form, InputGroup, Table } from 'react-bootstrap'
 import FormCreateMenu from '../../components/FormMenu/FormCreateMenu';
 import Loader from '../../components/Loader/Loader';
-import Sidebar from '../../components/Sidebar'
+import './admin.css';
+import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 
 const AdminMenu = () => {
     const [productos, setProductos] = useState([]);
@@ -47,7 +48,7 @@ const AdminMenu = () => {
       <Sidebar/>
       <Container fluid className='content'>
       <div className="container mt-5">
-      <h1 className="text-center mb-4">Admin</h1>
+      <h1 className="text-center mb-4">MENÚS</h1>
       <button
         className="btn btn-primary my-3"
         onClick={() => setCreateProduct(!createProduct)}

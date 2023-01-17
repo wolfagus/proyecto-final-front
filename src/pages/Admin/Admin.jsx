@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table';
 import { useNavigate } from 'react-router-dom';
 //import FormCreateProduct from '../../components/FormMenu/FormCreateMenu.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
-import Sidebar from '../../components/Sidebar'
+import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import { deleteProduct, getAllProducts } from '../../services/productService.js';
 import './admin.css'
 
@@ -50,7 +50,7 @@ import './admin.css'
       <Sidebar/>
       
       </div>
-      </div> 
+      </div>
       )
 }
 

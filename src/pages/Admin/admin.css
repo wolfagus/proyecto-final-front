@@ -4,6 +4,14 @@ body {
     font-family: 'Rubik', sans-serif;
     background-color: rgb(69, 59, 41);
 }
+/* .container {
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+} */
 .flex {
     display: flex;
 }
@@ -11,7 +19,7 @@ body {
 .sidebar {
     background-color: rgba(120, 107, 110, 0.57);
     width: 9rem;
-    height: calc(100vh);
+    height: auto;
     border-right: 1px solid rgb(101, 97, 97);
 }
 
@@ -32,11 +40,29 @@ body {
 }
 .tableUser {
     text-align: center;
+    width: 100%;
+    max-height: 303px;
+}
+
+.table-responsive {
+    max-height:  80vh;
+    overflow-y: scroll;
 }
 .headUser {
     color: rgb(245, 245, 245);
+    border-color: transparent;
 }
 
 .headUser th {
-    background-color: rgb(195, 39, 39);
+    background-color: rgb(12, 11, 11);
+    border-radius: 20px;
+    background: #861313;
+}
+
+.content {
+    padding: 4rem;
+}
+.content h1 {
+    color: aliceblue;
+    margin-top: 18px;
 }

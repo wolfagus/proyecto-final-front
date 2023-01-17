@@ -18,7 +18,7 @@ export const getAllUser = async () => {
 
 export const getOneUser = async (_id) => {
   try {
-    return await clientAxios.get(`/users/${_id}`)
+    return await clientAxios.get(`/user/${_id}`)
   } catch (error) {
     console.error(error);
   }
