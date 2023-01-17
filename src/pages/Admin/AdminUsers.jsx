@@ -5,8 +5,9 @@ import { deleteUser, getAllUser } from "../../services/userService.js";
 import { Button, Container, Form, InputGroup, Table } from "react-bootstrap";
 import FormCreateUser from "../../components/FormUser/FormCreateUser";
 import Loader from "../../components/Loader/Loader";
-import Sidebar from "../../components/Sidebar";
-import './admin.css';
+import Sidebar from "../../components/Sidebar/Sidebar";
+import "./admin.css";
+import { FaRegTrashAlt, FaUserEdit } from "react-icons/fa";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -47,8 +48,8 @@ const AdminUsers = () => {
       <div className="flex">
         <Sidebar />
         <Container fluid className="content">
-          <div className="container mt-5">
-            <h1 className="text-center mb-4">Admin</h1>
+          <div className="container">
+            <h1 className="text-center mb-4">USUARIOS</h1>
             <button
               className="btn btn-primary my-3"
               onClick={() => setCreateUser(!createUser)}
@@ -73,7 +74,14 @@ const AdminUsers = () => {
                     onChange={(e) => setTerm(e.target.value)}
                   />
                 </InputGroup>
-                <Table className="tableUser" striped bordered hover variant="dark">
+                <Table
+                  responsive
+                  className="tableUser"
+                  striped
+                  bordered
+                  hover
+                  variant="dark"
+                >
                   <thead className="headUser">
                     <tr>
                       <th>#</th>
@@ -101,7 +109,7 @@ const AdminUsers = () => {
                             variant="danger"
                             onClick={() => deleteUsuario(user._id)}
                           >
-                            D
+                            <FaRegTrashAlt />
                           </Button>
                           <Button
                             type="button"
@@ -111,7 +119,7 @@ const AdminUsers = () => {
                               navigate(`/admin/edit/user/${user._id}`)
                             }
                           >
-                            E
+                            <FaUserEdit/>
                           </Button>
                         </td>
                       </tr>
