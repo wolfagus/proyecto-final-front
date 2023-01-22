@@ -50,7 +50,7 @@ const FormCreateMenu = ({
       title: 'Producto editado exitosamente',
       icon: 'success',
     });
-    navigate('/admin');
+    navigate('/admin/menu');
   };
 
   return (
@@ -58,11 +58,11 @@ const FormCreateMenu = ({
       <h1>{isEdit ? 'Editar Producto' : 'Agregue un nuevo Menu'}</h1>
       <Loader isLoading={isLoading || isEditLoading}>
         <Form>
-          <Form.Group className="mb-3" controlId="name">
+          <Form.Group className="mb-3" controlId="title">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
-              value={newProduct?.name}
+              value={newProduct?.title}
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
@@ -74,11 +74,11 @@ const FormCreateMenu = ({
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="image">
+          <Form.Group className="mb-3" controlId="images">
             <Form.Label>Imágen</Form.Label>
             <Form.Control
               type="text"
-              value={newProduct?.image}
+              value={newProduct?.images}
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
@@ -91,16 +91,16 @@ const FormCreateMenu = ({
             />
           </Form.Group>
           <Form.Select className="my-4"onChange={(e) => setSelectCategories(e.target.value)}>
-            <option value=''>Elegí la categoria</option>
-            <option value="63841bb4afe6c64efe5bccec">Entradas</option>
-            <option value="63841bb4afe6c64efe5bccec">Ensaladas</option>
-            <option value="63841bb4afe6c64efe5bccec">Menu Light</option>
-            <option value="63841bb4afe6c64efe5bccec">Pastas</option>
-            <option value="63841bb4afe6c64efe5bccec">Pizzas</option>
-            <option value="63841bb4afe6c64efe5bccec">Carnes</option>
-            <option value="63841bb4afe6c64efe5bccec">Pizzas</option>
-            <option value="63841bb4afe6c64efe5bccec">Pescados</option>
-            <option value="63841bb4afe6c64efe5bccec">Postres</option>
+            <option disabled>Elegí la categoria</option>
+            <option value={newProduct?.categories}>Entradas</option>
+            <option value={newProduct?.categories}>Ensaladas</option>
+            <option value={newProduct?.categories}>Menu Light</option>
+            <option value={newProduct?.categories}>Pastas</option>
+            <option value={newProduct?.categories}>Pizzas</option>
+            <option value={newProduct?.categories}>Carnes</option>
+            <option value={newProduct?.categories}>Pizzas</option>
+            <option value={newProduct?.categories}>Pescados</option>
+            <option value={newProduct?.categories}>Postres</option>
 
           </Form.Select>
           <Button type="button" onClick={isEdit ? editProduct : crearProducto}>

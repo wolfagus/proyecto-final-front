@@ -28,7 +28,7 @@ const AdminMenu = () => {
     }, []);
   
     useEffect(() => {
-      const search = productos.filter(prod => prod.name.toLowerCase().includes(term.toLowerCase()));
+      const search = productos.filter(prod => prod.title.toLowerCase().includes(term.toLowerCase()));
       setProductosSearch(search)
     }, [term, productos])
   
@@ -76,6 +76,7 @@ const AdminMenu = () => {
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>
+                <th>#</th>
                 <th>Imagen</th>
                 <th>Nombre</th>
                 <th>Precio</th>
@@ -88,9 +89,11 @@ const AdminMenu = () => {
               {productosSearch.map((producto, index) => (
                 <tr>
                   <td>{++index}</td>
-                  <td>{producto.name}</td>
+                  <td>{producto.images}</td>
+                  <td>{producto.title}</td>
                   <td>{producto.price}</td>
-                  <td>{producto.categories?.name}</td>
+                  <td>{producto.stock}</td>
+                  <td>{producto.categories}</td>
                   <td>
                     <Button
                       type="button"
