@@ -90,19 +90,23 @@ const FormCreateMenu = ({
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
-          <Form.Select className="my-4"onChange={(e) => setSelectCategories(e.target.value)}>
-            <option disabled>Elegí la categoria</option>
-            <option value={newProduct?.categories}>Entradas</option>
-            <option value={newProduct?.categories}>Ensaladas</option>
-            <option value={newProduct?.categories}>Menu Light</option>
-            <option value={newProduct?.categories}>Pastas</option>
-            <option value={newProduct?.categories}>Pizzas</option>
-            <option value={newProduct?.categories}>Carnes</option>
-            <option value={newProduct?.categories}>Pizzas</option>
-            <option value={newProduct?.categories}>Pescados</option>
-            <option value={newProduct?.categories}>Postres</option>
-
-          </Form.Select>
+          <Form.Group className="mb-3" controlId="categories">
+            <Form.Label className="labelFormUser">Categoria</Form.Label>
+            <Form.Select
+              type="text"
+              value={newProduct?.categories}
+              onChange={(e) => handleChange(e)}
+            >
+              <option>Entradas</option>
+              <option>Ensaladas</option>
+              <option>Menu Light</option>
+              <option>Pastas</option>
+              <option>Pizzas</option>
+              <option>Carnes</option>
+              <option>Pescados</option>
+              <option>Postres</option>
+            </Form.Select>
+          </Form.Group>
           <Button type="button" onClick={isEdit ? editProduct : crearProducto}>
             {isEdit ? 'Editar' : 'Agregar'}
           </Button>
