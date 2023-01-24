@@ -99,6 +99,7 @@ const FormCreateMenu = ({
             >
               <option>Entradas</option>
               <option>Ensaladas</option>
+              <option>Minutas</option>
               <option>Menu Light</option>
               <option>Pastas</option>
               <option>Pizzas</option>

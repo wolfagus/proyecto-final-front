@@ -11,6 +11,7 @@ import Loader from "../../components/Loader/Loader";
 import "./admin.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import { FaRegTrashAlt, FaUserEdit } from "react-icons/fa";
+import swal from "sweetalert";
 
 const AdminMenu = () => {
   const [productos, setProductos] = useState([]);
@@ -40,11 +41,25 @@ const AdminMenu = () => {
 
   const deleteProducto = async (id) => {
     setLoading(true);
-    await deleteProduct(id);
-    const filteredProducts = productos.filter(
-      (producto) => producto._id !== id
-    );
-    setProductos(filteredProducts);
+    swal({
+      title: "Esta seguro que desea eliminar el menu?",
+      text: "Si acepta, eliminará el producto",
+      icon: "warning",
+      buttons: ["CANCELAR", "ACEPTO"],
+      dangerMode: true,
+    })
+    .then((res) => {
+      if (res) {
+        swal("El menu ha sido eliminado!", {
+          icon: "success",
+        });
+        deleteProduct(id);
+       navigate("/admin/menu")
+       window.location.reload();
+      } else {
+        swal("Cancelaste la eliminación!");
+      }
+    })
     setLoading(false);
   };
 
