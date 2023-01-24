@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, getAllUser } from "../../services/userService.js";
 import { Button, Container, Form, InputGroup, Table } from "react-bootstrap";
-import FormCreateUser from "../../components/FormUser/FormCreateUser";
+import FormCreateUserFormik from "../../components/FormUser/FormCreateUserFormik";
 import Loader from "../../components/Loader/Loader";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./admin.css";
 import { FaRegTrashAlt, FaUserEdit } from "react-icons/fa";
+import swal from "sweetalert";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -37,11 +38,36 @@ const AdminUsers = () => {
 
   const deleteUsuario = async (_id) => {
     setLoading(true);
+  swal({
+    title: "Esta seguro que desea eliminar el usuario?",
+    text: "Si acepta, el usuario quedará inactivo",
+    icon: "warning",
+    buttons: ["CANCELAR", "ACEPTO"],
+    dangerMode: true,
+  })
+  .then((res) => {
+    if (res) {
+      swal("El usuario ha sido eliminado!", {
+        icon: "success",
+      });
+     deleteUser(_id);
+     navigate("/admin/clients")
+     window.location.reload();
+    } else {
+      swal("Cancelaste la eliminación!");
+    }
+  })
+  setLoading(false);
+};
+
+
+/*   const deleteUsuario = async (_id) => {
+    setLoading(true);
     await deleteUser(_id);
     const filteredUsers = users.filter((user) => user._id !== _id);
     setUsers(filteredUsers);
     setLoading(false);
-  };
+  }; */
 
   return (
     <div className="admin">
@@ -57,11 +83,9 @@ const AdminUsers = () => {
               {createUser ? "Ver Tabla" : "Agregar un nuevo usuario"}
             </button>
             {createUser ? (
-              <FormCreateUser
-                setCreateUser={setCreateUser}
-                users={users}
-                setUsers={setUsers}
-                setUserSearch={setUserSearch}
+              
+              <FormCreateUserFormik
+              
               />
             ) : (
               <Loader isLoading={loading}>
@@ -76,13 +100,12 @@ const AdminUsers = () => {
                 </InputGroup>
                 <Table
                   responsive
-                  className="tableUser"
                   striped
                   bordered
                   hover
                   variant="dark"
                 >
-                  <thead className="headUser">
+                  <thead className="tHeadFormat">
                     <tr>
                       <th>#</th>
                       <th>Nombre</th>
@@ -102,7 +125,7 @@ const AdminUsers = () => {
                         <td>{user.createdAt}</td>
                         <td>{user.role}</td>
                         <td>{user.deleteAt}</td>
-                        <td>
+                        <td className="tdAction">
                           <Button
                             type="button"
                             className="mx-2"

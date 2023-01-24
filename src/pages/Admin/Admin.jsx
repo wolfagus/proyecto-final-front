@@ -1,7 +1,5 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Button, Container, Form, InputGroup } from 'react-bootstrap';
-import Table from 'react-bootstrap/Table';
 import { useNavigate } from 'react-router-dom';
 //import FormCreateProduct from '../../components/FormMenu/FormCreateMenu.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
@@ -29,7 +27,7 @@ import './admin.css'
   }, []);
 
   useEffect(() => {
-    const search = productos.filter(prod => prod.name.toLowerCase().includes(term.toLowerCase()));
+    const search = productos.filter(prod => prod.title.toLowerCase().includes(term.toLowerCase()));
     setProductosSearch(search)
   }, [term, productos])
 

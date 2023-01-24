@@ -20,15 +20,27 @@ const FormCreateUser = ({
   const [newUser, setNewUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [validated, setValidated] = useState(false);
 
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
   };
 
   useEffect(() => {
     setIsLoading(true);
     setNewUser(user);
     setIsLoading(false);
+    setValidated(true);
   }, [user]);
 
   const createUser = async () => {
@@ -38,9 +50,10 @@ const FormCreateUser = ({
     const allUsers = [...users, data];
     console.log('User created');
     setUsers(allUsers);
-    setUsersSearch(allUsers);
     setIsLoading(false);
     setCreateUser(false);
+    navigate("/admin/clients")
+    window.location.reload();
   };
 
   const editUser = async () => {
@@ -58,7 +71,7 @@ const FormCreateUser = ({
     <div>
       <h1>{isEdit ? "Editar Usuario" : "Agregue un nuevo Usuario"}</h1>
       <Loader isLoading={isLoading || isEditLoading}>
-        <Form>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label className="labelFormUser">Nombre</Form.Label>
             <Form.Control
@@ -73,10 +86,13 @@ const FormCreateUser = ({
             <Form.Label className="labelFormUser">Email</Form.Label>
             <Form.Control
               required
-              type="text"
+              type="email"
               value={newUser?.email}
               onChange={(e) => handleChange(e)}
             />
+            <Form.Control.Feedback type="invalid">
+              Por favor ingrese una dirección de correo
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="role">
             <Form.Label className="labelFormUser">Rol</Form.Label>
@@ -93,12 +109,13 @@ const FormCreateUser = ({
           <Form.Group className="mb-3" controlId="password">
             <Form.Label className="labelFormUser">Password</Form.Label>
             <Form.Control
+              required
               type="password"
               value={newUser?.password}
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
-          <Button type="button" onClick={isEdit ? editUser : createUser}>
+          <Button type="submit" onClick={isEdit ? editUser : createUser}>
             {isEdit ? "Editar" : "Agregar"}
           </Button>
         </Form>

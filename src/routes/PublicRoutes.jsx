@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import AdminUsers from "../pages/Admin/AdminUsers";
 import AdminMenu from "../pages/Admin/AdminMenu";
 import UserEdit from "../pages/Admin/UserEdit";
+import MenuEdit from "../pages/Admin/MenuEdit";
 // import { useEffect } from 'react';
 
 const PublicRoutes = () => {
@@ -39,6 +40,13 @@ const PublicRoutes = () => {
           exact
           element={
             <UserEdit />
+          }
+        />
+          <Route
+          path="/admin/edit/product/:id"
+          exact
+          element={
+            <MenuEdit />
           }
         />
         {/* </PrivateRoutes> */}

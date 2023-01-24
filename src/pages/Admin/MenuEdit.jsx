@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import FormEditUser from '../../components/FormUser/FormEditUser';
+import FormCreateMenu from '../../components/FormMenu/FormCreateMenu';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { getOneUser } from '../../services/userService';
+import { getOneProduct } from '../../services/productService'; 
 import './admin.css'
 
-const UserEdit = () => {
+const MenuEdit = () => {
   const { id } = useParams();
-  const [user, setUser] = useState({});
+  const [producto, setProducto] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
       setLoading(true);
-      const { data } = await getOneUser(id);
-      setUser(data)
+      const { data } = await getOneProduct(id);
+      setProducto(data)
       setLoading(false);
     }
     getUser();
@@ -28,11 +28,11 @@ const UserEdit = () => {
       <Sidebar />
       <Container className='content' fluid>
       <h1 className="text-center">USUARIOS</h1>
-      <FormEditUser isEdit user={user} isEditLoading={loading} userId={id}/>
+      <FormCreateMenu isEdit producto={producto} isEditLoading={loading} productId={id}/>
       </Container>
       </div>
     </div>
   );
 };
 
-export default UserEdit;
+export default MenuEdit;
