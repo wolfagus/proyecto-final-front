@@ -26,6 +26,8 @@ body {
 .sidebar ul {
     list-style: none;
     padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar li, a {
@@ -35,10 +37,15 @@ body {
     padding: 1rem;
 }
 
+.sidebar li {
+
+    color: aliceblue;
+}
+
 .sidebar li, a:hover {
     color: rgb(30, 22, 13);
 }
-.tableUser {
+.table {
     text-align: center;
     width: 100%;
     max-height: 303px;
@@ -48,15 +55,19 @@ body {
     max-height:  80vh;
     overflow-y: scroll;
 }
-.headUser {
+.tHeadFormat {
     color: rgb(245, 245, 245);
     border-color: transparent;
 }
 
-.headUser th {
+.tHeadFormat th {
     background-color: rgb(12, 11, 11);
     border-radius: 20px;
     background: #861313;
+}
+
+tbody tr {
+    vertical-align: middle;
 }
 
 .content {
@@ -65,4 +76,41 @@ body {
 .content h1 {
     color: aliceblue;
     margin-top: 18px;
+}
+
+@media (max-width: 768px) {
+    .flex {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 75px;
+        background-color: rgba(120, 107, 110, 0);
+        padding: 0px;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style: none;
+        padding: 1rem;
+    }
+
+    .sidebar li {
+        text-decoration: none;
+        color: aliceblue;
+        padding: 1rem;
+        letter-spacing: 2px;
+        margin-left: 3px;
+    }
+
+    .tHeadFormat th {
+        padding: inherit;
+    }
+
+
+
 }

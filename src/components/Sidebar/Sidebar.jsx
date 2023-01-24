@@ -11,8 +11,8 @@ const Sidebar = () => {
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "link active" : "link")}
-          >
-            <FaHome />
+            >
+          <FaHome />
             Inicio
           </NavLink>
         </li>
@@ -20,7 +20,7 @@ const Sidebar = () => {
           <NavLink to="/admin/clients"
           className={({ isActive }) => (isActive ? "link active" : "link")}
           >
-            <FaUser />
+          <FaUser />
             Clientes
           </NavLink>
         </li>
