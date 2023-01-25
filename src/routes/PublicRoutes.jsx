@@ -26,8 +26,8 @@ const PublicRoutes = () => {
     <>
       <Navbar title="Rolling Code <>" />
       <Routes>
-        {/* <Route path="/" element={<Home />} />
-          <Route path="/verify-account" element={<VerifyAccount />} />
+        { <Route path="/" element={<Home />} />
+          /* <Route path="/verify-account" element={<VerifyAccount />} />
         <Route path="/contact" element={<Contact />} /> */}
         <Route path="/about-us" element={<AboutUs />} />
         {/* <PrivateRoutes> */}
