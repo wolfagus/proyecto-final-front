@@ -1,0 +1,25 @@
+.product__item{
+    border: 0.2px solid rgb(189, 189, 189) /*#fff7ac;*/;
+    text-align: center;
+    padding: 30px;
+    cursor:pointer;
+}
+.product__img{
+    margin-bottom: 20px;
+    transition: 0.4s;
+}
+.product__img:hover{
+    transform: scale(1.2);
+}
+.product__content, .h5{
+    margin-bottom: 30px;
+    color: rgb(255, 255, 210);
+    /*font-size: 1rem;
+    color:rgb(99, 94, 94);*/
+}
+
+/*@media only screen and (max-width:768px) {
+    .addTOCart__btn{
+        margin-top: 1px;
+    }
+}*/

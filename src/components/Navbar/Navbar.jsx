@@ -37,7 +37,7 @@ const Navbar = () => {
 
       <nav className='navbars'>
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-          LOGO
+        Mr. Chef  
         </Link>
         <div className='menu-icon' onClick={handleClick} >
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -60,7 +60,7 @@ const Navbar = () => {
           </li>
           <li className='nav-item'>
             <Link to='/About-us' className='nav-links' onClick={closeMobileMenu}>
-              Quienes somos
+              Quiénes somos
             </Link>
           </li>
           {/* <li className='nav-item'>
