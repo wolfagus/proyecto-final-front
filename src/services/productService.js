@@ -18,6 +18,7 @@ export const getOneProduct = async (_id) => {
 
 export const createProducts = async (data) => {
   try {
+    console.log(data)
     return await clientAxios.post('/createproducts', data)
   } catch (error) {
     console.error(error);

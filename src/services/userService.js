@@ -2,6 +2,7 @@ import clientAxios from '../config/clientAxios';
 
 export const userRegister = async (data) => {
   try {
+    console.log(data)
     return await clientAxios.post('/registerUser', data)
   } catch (error) {
     console.error(error);
@@ -26,7 +27,9 @@ export const getOneUser = async (_id) => {
 
 export const userLogin = async (data) => {
   try {
+    console.log(data)
     return await clientAxios.post('/login', data)
+    
   } catch (error) {
     console.error(error);
   }

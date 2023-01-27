@@ -33,7 +33,8 @@ const FormCreateMenu = ({
 
   const crearProducto = async () => {
     setIsLoading(true);
-    const { data } = await createProducts({...newProduct, categories: selectCategories});
+    const { data } = await createProducts({...newProduct, categories: selectCategories, });
+    console.log(data)
     setNewProduct({});
     const allProducts = [...productos, data];
     setProductos(allProducts);
