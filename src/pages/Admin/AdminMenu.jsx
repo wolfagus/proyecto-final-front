@@ -12,6 +12,7 @@ import "./admin.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import { FaRegTrashAlt, FaUserEdit } from "react-icons/fa";
 import swal from "sweetalert";
+import './admin.css'
 
 const AdminMenu = () => {
   const [productos, setProductos] = useState([]);
@@ -108,9 +109,11 @@ const AdminMenu = () => {
                   </thead>
                   <tbody>
                     {productosSearch.map((producto, index) => (
+                      
                       <tr>
+                        {console.log(producto)}
                         <td>{++index}</td>
-                        <td>{producto.images}</td>
+                        <td><img src={producto.images} className='img_menu' alt="" /></td>
                         <td>{producto.title}</td>
                         <td>{producto.price}</td>
                         <td>{producto.stock}</td>

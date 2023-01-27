@@ -1,11 +1,35 @@
 import React, { useState } from 'react'
-import { Button } from './Button'
+import ButtonLogin from './ButtonLogin'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
+import FormRegister from '../FormUser/FormCreateUserFormik'
+import { ActionTypes, useContextState } from '../../context/contextState'
+import { Button } from 'react-bootstrap'
+import ModalCustom from '../modalCustom/ModalCustom'
 // import Dropdown from './Dropdown'
 
 
 const Navbar = () => {
+
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setContextState({
+      type: ActionTypes.SET_USER_LOGIN,
+      value: false,
+    });
+    setContextState({
+      type: ActionTypes.SET_USER_DATA,
+      value: {},
+    });
+  };
+
+  const [showModal, setShowModal] = useState(false);
+  const [showModalLogin, setShowModalLogin] = useState(false);
+
+
+  const { contextState, setContextState } = useContextState();
   const [click, setClick] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
 
@@ -36,6 +60,18 @@ const Navbar = () => {
     <>
 
       <nav className='navbars'>
+      <ModalCustom
+        show={showModal}
+        title="Registrate"
+        handleClose={() => setShowModal(!showModal)}
+        FormRegister={FormRegister}
+      />
+      <ModalCustom
+        show={showModalLogin}
+        title="Login"
+        handleClose={() => setShowModalLogin(!showModalLogin)}
+        FormRegister={ButtonLogin }
+      />
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
           LOGO
         </Link>
@@ -49,8 +85,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li className='nav-item'
-            // onMouseEnter={onMouseEnter}
-            // onMouseLeave={onMouseLeave}
+          // onMouseEnter={onMouseEnter}
+          // onMouseLeave={onMouseLeave}
           >
             <Link to='/Products' className='nav-links' onClick={closeMobileMenu}>
               Productos
@@ -69,7 +105,21 @@ const Navbar = () => {
             </Link>
           </li> */}
         </ul>
-        <Button />
+
+
+        <Button className="btn btn-danger ml-5" size="sm" 
+        onClick={ contextState.userLogged ? () => logout() : () => setShowModal(!showModal) }>
+          {contextState.userLogged ? 'Cerrar Sesión' : 'Registrate'}
+        </Button>
+
+        {!contextState.userLogged && (
+          <li className="ml-5">
+        
+              <ButtonLogin/>
+           
+          </li>)}
+
+
       </nav>
 
     </>

@@ -114,3 +114,13 @@ tbody tr {
 
 
 }
+
+
+
+
+/*ADMIN MENU*/
+
+.img_menu{
+    object-fit: cover;
+    max-width: 10rem;
+}
