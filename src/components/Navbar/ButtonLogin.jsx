@@ -14,6 +14,9 @@ import { ActionTypes, useContextState } from '../../context/contextState';
 
 const ButtonLogin = () => {
 
+    const temporizadorDeRetraso =(data)=> {
+         setTimeout(data, 3000);
+      }
     const { setContextState } = useContextState();
     const navigate = useNavigate();
 
@@ -40,7 +43,6 @@ const ButtonLogin = () => {
                               email: values.email,
                               password: values.password,
                             })
-                            console.log(data)
                             setContextState({
                               type: ActionTypes.SET_USER_LOGIN,
                               value: true,
@@ -49,10 +51,10 @@ const ButtonLogin = () => {
                               type: ActionTypes.SET_USER_DATA,
                               value: data.userData,
                             })
-                            setLocalStorage('token', data.activeToken)
+                            setLocalStorage('token', data.token)
                             setLocalStorage('user', data.userData)
                             if (data.userData.isVerified && data.userData.role === "ADMIN") {
-                              console.log(data.userFound.isVerified, data.userFound.role)
+                              console.log(data.userData.isVerified, data.userData.role)
                               navigate('/admin')
                             }
                             actions.resetForm();
@@ -120,7 +122,8 @@ const ButtonLogin = () => {
                                 </Form.Group>
                                 <div className='d-flex justify-content-around'>
                                     <Button variant="danger" onClick={handleClose}>Cancelar</Button>
-                                    <Button type="submit">Ingresar</Button>
+                                    <Button type="submit" onClick={temporizadorDeRetraso(handleClose)}
+                                    >Ingresar</Button>
                                 </div>
 
 

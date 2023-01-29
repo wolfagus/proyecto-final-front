@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getLocalStorage } from "../utils/localStorageHelper";
+
 
 
 const defaultOptions = {
@@ -12,7 +12,7 @@ const defaultOptions = {
 const clientAxios = axios.create(defaultOptions);
 
 clientAxios.interceptors.request.use(function (config) {
-  const token = getLocalStorage('token');
+  const token = JSON.parse(localStorage.getItem('token'));
   config.headers.Authorization = token ? `Bearer ${token}` : '';
   return config;
 });

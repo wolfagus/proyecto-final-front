@@ -73,7 +73,7 @@ const Navbar = () => {
         FormRegister={ButtonLogin }
       />
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-        Mr. Chef  
+        Mr. Chef  {console.log(contextState.userLogged)} 
         </Link>
         <div className='menu-icon' onClick={handleClick} >
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -105,20 +105,24 @@ const Navbar = () => {
             </Link>
           </li> */}
         </ul>
-
-
-        <Button className="btn btn-danger ml-5" size="sm" 
-        onClick={ contextState.userLogged ? () => logout() : () => setShowModal(!showModal) }>
-          {contextState.userLogged ? 'Cerrar Sesión' : 'Registrate'}
-        </Button>
-
-        {!contextState.userLogged && (
-          <li className="ml-5">
-        
-              <ButtonLogin/>
-           
-          </li>)}
-
+        <li className="ml-5">
+              <Button
+                className="btn btn-danger ml-5"
+                size="sm"
+                onClick={
+                  contextState.userLogged
+                    ? () => logout()
+                    : () => setShowModal(!showModal)
+                }
+              >
+                {contextState.userLogged ? 'Cerrar Sesión' : 'Registrate'}
+              </Button>
+            </li>
+            {!contextState.userLogged && (
+              <li className="ml-5">
+                  <ButtonLogin/>
+              </li>
+            )}
 
       </nav>
 

@@ -12,9 +12,9 @@ const Footer = () => {
     </div>
 
     <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li className="ms-3"><a className="text-muted" href="/"><i class="fa-brands fa-facebook fs-2"  ></i></a></li>
-      <li className="ms-3"><a className="text-muted" href="/"><i class="fa-brands fa-instagram fs-2"  ></i></a></li>
-      <li className="ms-3"><a className="text-muted" href="/"><i class="fa-brands fa-twitter fs-2"  ></i></a></li>
+      <li className="ms-3"><a className="text-muted" href="/"><i className="fa-brands fa-facebook fs-2"  ></i></a></li>
+      <li className="ms-3"><a className="text-muted" href="/"><i className="fa-brands fa-instagram fs-2"  ></i></a></li>
+      <li className="ms-3"><a className="text-muted" href="/"><i className="fa-brands fa-twitter fs-2"  ></i></a></li>
     </ul>
   </footer>
 </div>
