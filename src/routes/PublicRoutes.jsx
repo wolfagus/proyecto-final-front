@@ -2,7 +2,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Admin from "../pages/Admin/Admin";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import AboutUs from "../pages/AboutUs";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer";
 import PrivateRoutes from "./PrivateRoutes";
@@ -11,6 +10,7 @@ import AdminMenu from "../pages/Admin/AdminMenu";
 import UserEdit from "../pages/Admin/UserEdit";
 import MenuEdit from "../pages/Admin/MenuEdit";
 import Products from "../pages/Products";
+import AboutUs from "../pages/About-Us/AboutUs";
 // import { useEffect } from 'react';
 
 const PublicRoutes = () => {
