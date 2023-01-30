@@ -2,20 +2,22 @@ import React from "react";
 //import productImg from '../../assets/images/chicken1.png'
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
+import { Col } from "react-bootstrap";
 
 const ProductCard = (props) => {
-  const { id, title, imgUrl, price } = props.item;
+  const { _id, title, images, price } = props.item;
 
   return (
-    <div className="product__item">
-      <div className="product__img">
-        <img src={imgUrl} alt="product-img" className="w-100" />
+    
+    <Col className="product__item">
+      <div style={{ width: '18rem' }} className="product__img">
+        <img src={images} alt="product-img" className="w-100" />
       </div>
 
       <div className="product__content">
         <h5>
           {" "}
-          <Link to={`/foods/${id}`}> {title} </Link>{" "}
+          <Link to={`/foods/${_id}`}> {title} </Link>{" "}
         </h5>
         <div className="d-flex align-items-center justify-content-between">
           <span className="product__price mt-4"> {price} </span>
@@ -24,7 +26,7 @@ const ProductCard = (props) => {
           </button>
         </div>
       </div>
-    </div>
+    </Col>
   );
 };
 
