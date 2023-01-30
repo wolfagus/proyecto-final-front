@@ -10,6 +10,7 @@ import AdminUsers from "../pages/Admin/AdminUsers";
 import AdminMenu from "../pages/Admin/AdminMenu";
 import UserEdit from "../pages/Admin/UserEdit";
 import MenuEdit from "../pages/Admin/MenuEdit";
+import Products from "../pages/Products";
 // import { useEffect } from 'react';
 
 const PublicRoutes = () => {
@@ -35,6 +36,7 @@ const PublicRoutes = () => {
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/clients" element={<AdminUsers />} />
           <Route path="/admin/menu" element={<AdminMenu />} />
+          <Route path="/Products" element={<Products />} />
           <Route
           path="/admin/edit/user/:id"
           exact
