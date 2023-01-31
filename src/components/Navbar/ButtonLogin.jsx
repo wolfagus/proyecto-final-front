@@ -68,11 +68,10 @@ const ButtonLogin = () => {
                         {({
                             handleSubmit,
                             handleChange,
-                            handleBlur,
                             values,
                             touched,
-                            isValid,
                             errors,
+                            isSubmitting
                         }) => (
                             <Form noValidate onSubmit={handleSubmit}>
                                 <Row className="mb-3">
@@ -122,7 +121,7 @@ const ButtonLogin = () => {
                                 </Form.Group>
                                 <div className='d-flex justify-content-around'>
                                     <Button variant="danger" onClick={handleClose}>Cancelar</Button>
-                                    <Button type="submit" onClick={temporizadorDeRetraso(handleClose)}
+                                    <Button type="submit"disabled={isSubmitting}  onClick={temporizadorDeRetraso(handleClose)}
                                     >Ingresar</Button>
                                 </div>
 

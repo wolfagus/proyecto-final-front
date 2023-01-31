@@ -12,19 +12,22 @@ import MenuEdit from "../pages/Admin/MenuEdit";
 import Products from "../pages/Products";
 import AboutUs from "../pages/About-Us/AboutUs";
 import NotFound from "../pages/NotFound";
-// import { useEffect } from 'react';
+import { ActionTypes, useContextState } from "../context/contextState";
+ import { useEffect } from 'react';
+import { getLocalStorage } from "../utils/localStorageHelper";
 
 const PublicRoutes = () => {
-  // const { setContextState, contextState } = useContextState();
-  // const navigate = useNavigate();
+   const { setContextState, contextState } = useContextState();
+   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const userData = getLocalStorage('user');
-  //   if (userData) {
-  //     setContextState({ type: ActionTypes.SET_USER_DATA, value: userData });
-  //   }
+  useEffect(() => {
+    const userData = getLocalStorage('user');
+    if (userData) {
+      setContextState({ type: ActionTypes.SET_USER_DATA, value: userData });
+    }
+   
+   }, []);
 
-  // }, []);
   return (
     <>
       <Navbar title="Rolling Code <>" />
