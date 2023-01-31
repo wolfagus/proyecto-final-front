@@ -11,6 +11,7 @@ import UserEdit from "../pages/Admin/UserEdit";
 import MenuEdit from "../pages/Admin/MenuEdit";
 import Products from "../pages/Products";
 import AboutUs from "../pages/About-Us/AboutUs";
+import NotFound from "../pages/NotFound";
 // import { useEffect } from 'react';
 
 const PublicRoutes = () => {
@@ -52,7 +53,7 @@ const PublicRoutes = () => {
           }
         />
         {/* </PrivateRoutes> */}
-        {/* <Route path="*" element={<NotFound />} /> */}
+         <Route path="*" element={<NotFound />} /> 
       </Routes>
       <Footer />
     </>
