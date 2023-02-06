@@ -121,7 +121,7 @@ const ButtonLogin = () => {
                                 </Form.Group>
                                 <div className='d-flex justify-content-around'>
                                     <Button variant="danger" onClick={handleClose}>Cancelar</Button>
-                                    <Button type="submit"disabled={isSubmitting}  onClick={temporizadorDeRetraso(handleClose)}
+                                    <Button type="submit"disabled={isSubmitting} 
                                     >Ingresar</Button>
                                 </div>
 

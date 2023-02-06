@@ -4,14 +4,18 @@ export const initialState = {
   userLogged: false,
   userData: {},
   isLoading: false, 
-};
+  carrito: []
+  };
 
 export const ActionTypes = {
   SET_USER_LOGIN: 'SET_USER_LOGIN',
   SET_USER_DATA: 'SET_USER_DATA',
+  SET_ADD_CARRITO: 'SET_ADD_CARRITO',
+  SET_REMOVE_CARRITO: 'SET_REMOVE_CARRITO',
+  SET_REMOVE_ALL_CARRITO: 'SET_REMOVE_ALL_CARRITO',
 };
 
-export const reducer = (state = {}, action) => {
+export const reducer = (state, action) => {
   const {type, value} = action;
   switch (type) {
     case ActionTypes.SET_USER_LOGIN: {
@@ -24,6 +28,24 @@ export const reducer = (state = {}, action) => {
       return {
         ...state,
         userData: value,
+      };
+    }
+    case ActionTypes.SET_ADD_CARRITO: {
+      return {
+        ...state,
+        carrito: [...state.carrito, value],
+      };
+    }
+    case ActionTypes.SET_REMOVE_CARRITO: {
+      return {
+        ...state,
+        carrito: value,
+      };
+    }
+    case ActionTypes.SET_REMOVE_ALL_CARRITO: {
+      return {
+        ...state,
+        carrito: value,
       };
     }
     default:
