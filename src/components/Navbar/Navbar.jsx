@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import ButtonLogin from "./ButtonLogin";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import {GrUserAdmin } from "react-icons/gr"
 import "./Navbar.css";
 import FormRegister from "../FormUser/FormCreateUserFormik";
 import { ActionTypes, useContextState } from "../../context/contextState";
@@ -8,8 +10,6 @@ import { Button, Col, Modal, Row } from "react-bootstrap";
 import ModalCustom from "../modalCustom/ModalCustom";
 import Form from "react-bootstrap/Form";
 import { comprarProductos } from "../../services/carritoService";
-
-// import Dropdown from './Dropdown'
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -85,21 +85,22 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbars">
-        <ModalCustom
-          show={showModal}
-          title="Registrate"
-          handleClose={() => setShowModal(!showModal)}
-          FormRegister={FormRegister}
-        />
-        <ModalCustom
-          show={showModalLogin}
-          title="Login"
-          handleClose={() => setShowModalLogin(!showModalLogin)}
-          FormRegister={ButtonLogin}
-        />
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          Mr. Chef
+      <nav className='navbars'>
+      <ModalCustom
+        show={showModal}
+        title="Registrate"
+        handleClose={() => setShowModal(!showModal)}
+        FormRegister={FormRegister}
+      />
+      <ModalCustom
+        show={showModalLogin}
+        title="Login"
+        handleClose={() => setShowModalLogin(!showModalLogin)}
+        FormRegister={ButtonLogin }
+      />
+        <Link to='/' className='brand-logo' onClick={closeMobileMenu}>
+        Mr. Chef 
+
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -139,25 +140,37 @@ const Navbar = () => {
               Iniciar sesion
             </Link>
           </li> */}
-        </ul>
+        
         <li className="ml-5">
-          <Button
-            className="btn btn-danger ml-5"
-            size="sm"
-            onClick={
-              contextState.userLogged
-                ? () => logout()
-                : () => setShowModal(!showModal)
-            }
-          >
-            {contextState.userLogged ? `Cerrar Sesión` : "Registrate"}
-          </Button>
-        </li>
-        {!contextState.userLogged && (
-          <li className="ml-5">
-            <ButtonLogin />
-          </li>
-        )}
+
+              <Button
+                className="nav-links bg-transparent border-dark ml-5"
+                size="sm"
+                onClick={
+                  contextState.userLogged
+                    ? () => logout()
+                    : () => setShowModal(!showModal)
+                }
+              >
+                {contextState.userLogged ? 'Cerrar Sesión' : 'Registrate'}
+              </Button>
+            </li>
+            {!contextState.userLogged && (
+              <li className="ml-5 nav-links">
+                  <ButtonLogin/>         
+              </li>
+            )}
+              {contextState.userLogged && contextState.userData.role === "ADMIN" && (
+              <li>
+                <Link to='/admin' className='nav-links-admin'>
+                  Panel Admin <GrUserAdmin/>
+                </Link>
+              </li>
+              )}
+            </ul>
+
+
+              
         {contextState.userLogged ? (
           <li className="ml-5">
             {" "}
@@ -188,6 +201,7 @@ const Navbar = () => {
             </Form>
           </Modal.Body>
         </Modal>
+
       </nav>
     </>
   );

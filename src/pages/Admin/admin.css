@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap");
 
 body {
-    font-family: 'Rubik', sans-serif;
-    background-color: rgb(69, 59, 41);
+  font-family: "Rubik", sans-serif;
+  background-color: rgb(69, 59, 41);
 }
 /* .container {
     background-repeat: no-repeat;
@@ -13,114 +13,138 @@ body {
     margin: 0px;
 } */
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .sidebar {
-    background-color: rgba(120, 107, 110, 0.57);
-    width: 9rem;
-    height: auto;
-    border-right: 1px solid rgb(101, 97, 97);
+  background-color: rgba(120, 107, 110, 0.57);
+  width: 9rem;
+  height: auto;
+  border-right: 1px solid rgb(101, 97, 97);
 }
 
 .sidebar ul {
-    list-style: none;
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
+  list-style: none;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar li, a {
-    margin-bottom: 1rem;
-    text-decoration: none;
-    color: aliceblue;
-    padding: 1rem;
+.sidebar li,
+a {
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: aliceblue;
+  padding: 1rem;
 }
 
 .sidebar li {
-
-    color: aliceblue;
+  color: aliceblue;
 }
 
-.sidebar li, a:hover {
-    color: rgb(30, 22, 13);
+.sidebar li,
+a:hover {
+  color: rgb(30, 22, 13);
 }
+
+.img-admin-panel {
+  margin: auto;
+  object-fit: contain;
+  width: 80vw;
+  height: 80vh;
+  filter: drop-shadow(0 0 0.75rem rgb(92, 92, 92));
+}
+
 .table {
-    text-align: center;
-    width: 100%;
-    max-height: 303px;
+  text-align: center;
+  width: 100%;
+  max-height: 303px;
 }
 
 .table-responsive {
-    max-height:  80vh;
-    overflow-y: scroll;
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 .tHeadFormat {
-    color: rgb(245, 245, 245);
-    border-color: transparent;
+  color: rgb(245, 245, 245);
+  border-color: transparent;
 }
 
 .tHeadFormat th {
-    background-color: rgb(12, 11, 11);
-    border-radius: 20px;
-    background: #861313;
+  background-color: rgb(12, 11, 11);
+  border-radius: 20px;
+  background: #861313;
 }
 
 tbody tr {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .content {
-    padding: 4rem;
+  padding: 4rem;
 }
 .content h1 {
-    color: aliceblue;
-    margin-top: 18px;
+  color: aliceblue;
+  margin-top: 18px;
 }
 
 @media (max-width: 768px) {
-    .flex {
-        display: block;
-    }
+  .flex {
+    display: block;
+  }
 
-    .sidebar {
-        width: 100%;
-        height: 75px;
-        background-color: rgba(120, 107, 110, 0);
-        padding: 0px;
-    }
+  .sidebar {
+    width: 100%;
+    height: 75px;
+    background-color: rgba(120, 107, 110, 0);
+    padding: 0px;
+  }
 
-    .sidebar ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-        list-style: none;
-        padding: 1rem;
-    }
+  .sidebar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
 
-    .sidebar li {
-        text-decoration: none;
-        color: aliceblue;
-        padding: 1rem;
-        letter-spacing: 2px;
-        margin-left: 3px;
-    }
+  .sidebar li {
+    text-decoration: none;
+    color: aliceblue;
+    padding: 1rem;
+    letter-spacing: 2px;
+    margin-left: 3px;
+  }
 
-    .tHeadFormat th {
-        padding: inherit;
-    }
-
-
-
+  .tHeadFormat th {
+    padding: inherit;
+  }
+  .img-admin-panel {
+    margin: auto;
+    object-fit: contain;
+    width: 100vw;
+    height: 80vh;
+  }
 }
 
+@media (max-width: 426px) {
+  .td-image,
+  .th-image {
+    display: none;
+  }
+}
 
-
+@media (max-width: 1024px) {
+.container-user {
+    max-width: 752px;
+}
+}
 
 /*ADMIN MENU*/
 
-.img_menu{
-    object-fit: cover;
-    max-width: 10rem;
+.img_menu {
+  object-fit: cover;
+  max-width: 10rem;
 }

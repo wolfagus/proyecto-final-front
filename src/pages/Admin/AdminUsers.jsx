@@ -38,30 +38,27 @@ const AdminUsers = () => {
 
   const deleteUsuario = async (_id) => {
     setLoading(true);
-  swal({
-    title: "Esta seguro que desea eliminar el usuario?",
-    text: "Si acepta, el usuario quedará inactivo",
-    icon: "warning",
-    buttons: ["CANCELAR", "ACEPTO"],
-    dangerMode: true,
-  })
-  .then((res) => {
-    if (res) {
-      swal("El usuario ha sido eliminado!", {
-        icon: "success",
-      });
-     deleteUser(_id);
-     navigate("/admin/clients")
-     window.location.reload();
-    } else {
-      swal("Cancelaste la eliminación!");
-    }
-  })
-  setLoading(false);
-};
+    swal({
+      title: "Esta seguro que desea eliminar el usuario?",
+      text: "Si acepta, el usuario quedará inactivo",
+      icon: "warning",
+      buttons: ["CANCELAR", "ACEPTO"],
+      dangerMode: true,
+    }).then((res) => {
+      if (res) {
+        swal("El usuario ha sido eliminado!", {
+          icon: "success",
+        });
+        deleteUser(_id);
+        navigate("/admin/clients");
+      } else {
+        swal("Cancelaste la eliminación!");
+      }
+    });
+    setLoading(false);
+  };
 
-
-/*   const deleteUsuario = async (_id) => {
+  /*   const deleteUsuario = async (_id) => {
     setLoading(true);
     await deleteUser(_id);
     const filteredUsers = users.filter((user) => user._id !== _id);
@@ -74,7 +71,7 @@ const AdminUsers = () => {
       <div className="flex">
         <Sidebar />
         <Container fluid className="content">
-          <div className="container">
+          <div className="container container-user text-white mt-5">
             <h1 className="text-center mb-4">USUARIOS</h1>
             <button
               className="btn btn-primary my-3"
@@ -83,10 +80,7 @@ const AdminUsers = () => {
               {createUser ? "Ver Tabla" : "Agregar un nuevo usuario"}
             </button>
             {createUser ? (
-              
-              <FormCreateUserFormik
-              
-              />
+              <FormCreateUserFormik />
             ) : (
               <Loader isLoading={loading}>
                 <InputGroup className="mb-3 my-3">
@@ -98,13 +92,7 @@ const AdminUsers = () => {
                     onChange={(e) => setTerm(e.target.value)}
                   />
                 </InputGroup>
-                <Table
-                  responsive
-                  striped
-                  bordered
-                  hover
-                  variant="dark"
-                >
+                <Table responsive striped bordered hover variant="dark">
                   <thead className="tHeadFormat">
                     <tr>
                       <th>#</th>
@@ -142,7 +130,7 @@ const AdminUsers = () => {
                               navigate(`/admin/edit/user/${user._id}`)
                             }
                           >
-                            <FaUserEdit/>
+                            <FaUserEdit />
                           </Button>
                         </td>
                       </tr>

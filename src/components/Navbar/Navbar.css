@@ -8,7 +8,7 @@
     font-size: 1.2rem;
   }
   
-  .navbar-logo {
+  .brand-logo {
     color: rgb(217, 218, 223);
     justify-self: start;
     margin-left: 15px;
@@ -28,6 +28,7 @@
   .nav-menu {
     display: grid;
     grid-template-columns: repeat(5, auto);
+    align-items: baseline;
     grid-gap: 10px;
     list-style: none;
     text-align: center;
@@ -51,7 +52,7 @@
   
   .nav-links:hover {
     color:#fff;
-    background-color: #1888ff;
+    background-color: #11101037;
     border-radius: 4px;
     transition: all 0.2s ease-out;
   }
@@ -92,7 +93,7 @@
       opacity: 1;
       transition: all 0.5s ease;
       z-index: 1;
-      /* align-items: center; */
+      align-items: center; 
       padding-left: 0;
     }
   
@@ -157,3 +158,39 @@
       display: none;
     }
   }
+
+/*  */
+.nav-links-admin {
+  margin: 20px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  height: 43px;
+  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  border-radius: 30px;
+  border: 1px solid #8F9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+}
+
+.nav-links-admin:hover {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+}
+
+.nav-links-admin:active {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.nav-links-admin:focus {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+
