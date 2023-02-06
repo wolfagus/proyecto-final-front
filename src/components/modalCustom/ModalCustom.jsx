@@ -1,4 +1,5 @@
 import Modal from 'react-bootstrap/Modal';
+import './ModalCustom.css'
 
 const ModalCustom = ({show, title, handleClose, FormRegister}) => {
   return (
