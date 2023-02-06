@@ -13,50 +13,73 @@ import Products from "../pages/Products";
 import AboutUs from "../pages/About-Us/AboutUs";
 import NotFound from "../pages/NotFound";
 import { ActionTypes, useContextState } from "../context/contextState";
- import { useEffect } from 'react';
+import { useEffect } from "react";
 import { getLocalStorage } from "../utils/localStorageHelper";
 
 const PublicRoutes = () => {
-   const { setContextState, contextState } = useContextState();
-   const navigate = useNavigate();
+  const { setContextState, contextState } = useContextState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const userData = getLocalStorage('user');
+    const userData = getLocalStorage("user");
     if (userData) {
       setContextState({ type: ActionTypes.SET_USER_DATA, value: userData });
     }
-   
-   }, []);
+  }, []);
 
   return (
     <>
       <Navbar title="Rolling Code <>" />
       <Routes>
-        { <Route path="/" element={<Home />} />
-          /* <Route path="/verify-account" element={<VerifyAccount />} />
-        <Route path="/contact" element={<Contact />} /> */}
+        {
+          <Route path="/" element={<Home />} />
+          /* <Route path="/verify-account" element={<VerifyAccount />} />*/
+        }
         <Route path="/about-us" element={<AboutUs />} />
-        {/* <PrivateRoutes> */}
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/clients" element={<AdminUsers />} />
-          <Route path="/admin/menu" element={<AdminMenu />} />
-          <Route path="/Products" element={<Products />} />
-          <Route
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoutes>
+              <Admin />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/admin/clients"
+          element={
+            <PrivateRoutes>
+              <AdminUsers />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/admin/menu"
+          element={
+            <PrivateRoutes>
+              <AdminMenu />
+            </PrivateRoutes>
+          }
+        />
+        <Route path="/Products" element={<Products />} />
+        <Route
           path="/admin/edit/user/:id"
           exact
           element={
-            <UserEdit />
+            <PrivateRoutes>
+              <UserEdit />
+            </PrivateRoutes>
           }
         />
-          <Route
+        <Route
           path="/admin/edit/product/:id"
           exact
           element={
-            <MenuEdit />
+            <PrivateRoutes>
+              <MenuEdit />
+            </PrivateRoutes>
           }
         />
-        {/* </PrivateRoutes> */}
-         <Route path="*" element={<NotFound />} /> 
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
