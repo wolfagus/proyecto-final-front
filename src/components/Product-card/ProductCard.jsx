@@ -3,9 +3,18 @@ import React from "react";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import { ActionTypes, initialState, useContextState } from '../../context/contextState';
 
-const ProductCard = (props) => {
+const ProductCard = (props) => {  
+  const { setContextState } = useContextState();
   const { _id, title, images, price } = props.item;
+  const addCarrito = () =>{
+    setContextState({
+      type: ActionTypes.SET_ADD_CARRITO,
+      value: props.item,
+    },console.log(initialState.carrito))
+  }
+
 
   return (
     
@@ -21,7 +30,7 @@ const ProductCard = (props) => {
         </h5>
         <div className="d-flex align-items-center justify-content-between">
           <span className="product__price mt-4"> {price} </span>
-          <button className="addTOCart__btn d-flex btn-light mt-4">
+          <button className="addTOCart__btn d-flex btn-light mt-4" onClick={() =>addCarrito()}>
             Añadir al carrito
           </button>
         </div>
