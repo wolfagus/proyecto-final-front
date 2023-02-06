@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ButtonLogin from './ButtonLogin'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import {GrUserAdmin } from "react-icons/gr"
 import './Navbar.css'
 import FormRegister from '../FormUser/FormCreateUserFormik'
 import { ActionTypes, useContextState } from '../../context/contextState'
@@ -72,7 +73,7 @@ const Navbar = () => {
         handleClose={() => setShowModalLogin(!showModalLogin)}
         FormRegister={ButtonLogin }
       />
-        <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+        <Link to='/' className='brand-logo' onClick={closeMobileMenu}>
         Mr. Chef 
         </Link>
         <div className='menu-icon' onClick={handleClick} >
@@ -104,10 +105,10 @@ const Navbar = () => {
               Iniciar sesion
             </Link>
           </li> */}
-        </ul>
+        
         <li className="ml-5">
               <Button
-                className="btn btn-danger ml-5"
+                className="nav-links bg-transparent border-dark ml-5"
                 size="sm"
                 onClick={
                   contextState.userLogged
@@ -119,10 +120,18 @@ const Navbar = () => {
               </Button>
             </li>
             {!contextState.userLogged && (
-              <li className="ml-5">
-                  <ButtonLogin/>
+              <li className="ml-5 nav-links">
+                  <ButtonLogin/>         
               </li>
             )}
+              {contextState.userLogged && contextState.userData.role === "ADMIN" && (
+              <li>
+                <Link to='/admin' className='nav-links-admin'>
+                  Panel Admin <GrUserAdmin/>
+                </Link>
+              </li>
+              )}
+            </ul>
 
       </nav>
 
