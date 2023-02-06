@@ -1,10 +1,11 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
+import '../App.css';
 import Admin from "../pages/Admin/Admin";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import AboutUs from "../pages/AboutUs";
 import Navbar from "../components/Navbar/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import PrivateRoutes from "./PrivateRoutes";
 import AdminUsers from "../pages/Admin/AdminUsers";
 import AdminMenu from "../pages/Admin/AdminMenu";
@@ -25,6 +26,8 @@ const PublicRoutes = () => {
   // }, []);
   return (
     <>
+    <div className="page-container"> 
+    <div className="content-wrap">
       <Navbar title="Rolling Code <>" />
       <Routes>
         { <Route path="/" element={<Home />} />
@@ -52,7 +55,9 @@ const PublicRoutes = () => {
         {/* </PrivateRoutes> */}
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
+      </div>
       <Footer />
+      </div>
     </>
   );
 };
