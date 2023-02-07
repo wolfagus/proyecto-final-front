@@ -72,7 +72,7 @@ border-radius: 5px;
         line-height: 22px;
     }
 
-    .food__category, button{
+    .food__category{
         padding: 5px 15px;
         font-size: .7rem;
         display: none;
