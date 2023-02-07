@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+.footer-logo {
+    color: rgb(217, 218, 223);
+    justify-self: start;
+    margin-left: 0px;
+    cursor: pointer;
+    font-size: 1.6rem;
+    margin-top: 18px;
+    font-family: 'Homemade Apple', cursive;
+    text-shadow: 0 0 1px rgb(255, 255, 199);
+}
+
