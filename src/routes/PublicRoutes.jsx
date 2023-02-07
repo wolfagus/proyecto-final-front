@@ -3,7 +3,7 @@ import Admin from "../pages/Admin/Admin";
 import "../App.css"; 
 import Home from "../pages/Home";
 import Navbar from "../components/Navbar/Navbar";
-import Footer from "../components/Footer/Footer";
+
 import PrivateRoutes from "./PrivateRoutes";
 import AdminUsers from "../pages/Admin/AdminUsers";
 import AdminMenu from "../pages/Admin/AdminMenu";
@@ -13,6 +13,7 @@ import Products from "../pages/Products";
 import AboutUs from "../pages/About-Us/AboutUs";
 import NotFound from "../pages/NotFound";
 import Pedidos from "../pages/Admin/pedidos";
+import Footer from "../components/Footer/Footer";
 
 const PublicRoutes = () => {
 
