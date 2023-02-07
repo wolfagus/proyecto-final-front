@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import ButtonLogin from "./ButtonLogin";
-import { Link, Navigate } from "react-router-dom";
-import {GrUserAdmin } from "react-icons/gr"
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { GrUserAdmin } from "react-icons/gr";
 import "./Navbar.css";
 import FormRegister from "../FormUser/FormCreateUserFormik";
 import { ActionTypes, useContextState } from "../../context/contextState";
@@ -32,10 +31,21 @@ const Navbar = () => {
       value: {},
     });
   };
+  const navigate = useNavigate();
+
+  const goToAdmin = () =>{
+    const haveUserData = getLocalStorage('user');
+    const {role } = haveUserData
+    if (haveUserData.role == 'ADMIN') {
+      setContextState({ type: ActionTypes.SET_USER_DATA, value: haveUserData });
+      navigate("/admin");
+    } else {
+      console.log(role)
+      swal("Error", "No esta autorizado para ingresar en esta seccion");}
+  }
 
   const [showModal, setShowModal] = useState(false);
   const [showModalLogin, setShowModalLogin] = useState(false);
-
 
   const [click, setClick] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
@@ -49,33 +59,35 @@ const Navbar = () => {
       value: [],
     });
   };
-  let total = 0
+  let total = 0;
   for (let i = 0; i < contextState.carrito.length; i++) {
-    let price = contextState.carrito[i].price
-    total = total + price
+    let price = contextState.carrito[i].price;
+    total = total + price;
   }
 
- let  titlePedido = ''
+  let titlePedido = "";
   for (let i = 0; i < contextState.carrito.length; i++) {
-    let name = contextState.carrito[i].title
-    titlePedido = `${titlePedido} + ${name}` 
+    let name = contextState.carrito[i].title;
+    titlePedido = `${titlePedido} + ${name}`;
   }
   const newPedido = {
     title: titlePedido,
-    detalles: contextState.carrito.map((producto) => producto ),
-    price: total
-  }
+    detalles: contextState.carrito.map((producto) => producto),
+    price: total,
+  };
 
-  const realizarCompra = async() => {
-    if(total > 0){
+  const realizarCompra = async () => {
+    if (total > 0) {
       const { data } = await comprarProductos(newPedido);
-    swal("Compra en proceso", "por favor revise su correo electronico para continuar");
-    clearCarrito()
+      swal(
+        "Compra en proceso",
+        "por favor revise su correo electronico para continuar"
+      );
+      clearCarrito();
     } else {
       swal("Error", "no hay ningun producto en el carrito");
     }
-    
-  }
+  };
 
   // const onMouseEnter = () => {
   //   if (window.innerWidth > 960) {
@@ -95,22 +107,21 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='navbars'>
-      <ModalCustom
-        show={showModal}
-        title="Registrate"
-        handleClose={() => setShowModal(!showModal)}
-        FormRegister={FormRegister}
-      />
-      <ModalCustom
-        show={showModalLogin}
-        title="Login"
-        handleClose={() => setShowModalLogin(!showModalLogin)}
-        FormRegister={ButtonLogin }
-      />
-        <Link to='/' className='brand-logo' onClick={closeMobileMenu}>
-        Mr. Chef 
-
+      <nav className="navbars">
+        <ModalCustom
+          show={showModal}
+          title="Registrate"
+          handleClose={() => setShowModal(!showModal)}
+          FormRegister={FormRegister}
+        />
+        <ModalCustom
+          show={showModalLogin}
+          title="Login"
+          handleClose={() => setShowModalLogin(!showModalLogin)}
+          FormRegister={ButtonLogin}
+        />
+        <Link to="/" className="brand-logo" onClick={closeMobileMenu}>
+          Mr. Chef
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -150,79 +161,73 @@ const Navbar = () => {
               Iniciar sesion
             </Link>
           </li> */}
-        
-        <li className="ml-5">
 
-              <Button
-                className="nav-links bg-transparent border-dark ml-5"
-                size="sm"
-                onClick={
-                  contextState.userLogged
-                    ? () => logout()
-                    : () => setShowModal(!showModal)
-                }
-              >
-                {contextState.userLogged ? 'Cerrar Sesión' : 'Registrate'}
+          <li className="ml-5">
+            <Button
+              className="nav-links bg-transparent border-dark ml-5"
+              size="sm"
+              onClick={
+                contextState.userLogged
+                  ? () => logout()
+                  : () => setShowModal(!showModal)
+              }
+            >
+              {contextState.userLogged ? "Cerrar Sesión" : "Registrate"}
+            </Button>
+          </li>
+          {!contextState.userLogged && (
+            <li className="ml-5 nav-links">
+              <ButtonLogin />
+            </li>
+          )}
+          {contextState.userData.role && (
+            <li>
+              <Button className="nav-links-admin" onClick={() => goToAdmin()}>
+                  Panel Admin <GrUserAdmin />
+                
               </Button>
             </li>
-            {!contextState.userLogged && (
-              <li className="ml-5 nav-links">
-                  <ButtonLogin/>         
-              </li>
-            )}
-            {contextState.userData.role === "ADMIN" && (
-                <li>
-                  <Link to='/admin' className='nav-links-admin'>
-                    Panel Admin <GrUserAdmin/>
-                  </Link>
-                </li>
-                )}
-              
+          )}
+        </ul>
 
-            </ul>
-
-            {contextState.userLogged ? (
+        {contextState.userLogged ? (
           <li className="ml-1">
             {" "}
             <Button variant="primary" onClick={handleShow}>
               <i class="fa-solid fa-cart-shopping text-white"></i>
             </Button>{" "}
           </li>
-        ): null}
-              
+        ) : null}
 
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-          </Modal.Header>
+          <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
-            <Row >
-              {contextState.carrito.map((producto)=>
-              <Row key={producto._id}>
-              <p className="text-dark">{producto.title}: ${producto.price}</p>
-              </Row>) }
+            <Row>
+              {contextState.carrito.map((producto) => (
+                <Row key={producto._id}>
+                  <p className="text-dark">
+                    {producto.title}: ${producto.price}
+                  </p>
+                </Row>
+              ))}
               <p className="text-dark">Total ${total}</p>
             </Row>
             <Form>
               <Row className="justify-content-around">
                 <Col className="d-flex justify-content-center">
-              <Button variant="danger" onClick={()=>clearCarrito()}>
-                Cancelar todo
-              </Button>
-              </Col>
-              <Col className="d-flex justify-content-center">              
-              <Button variant="success"  onClick={()=> realizarCompra()}  >
-                Comprar
-              </Button>
-              </Col>
-
-
+                  <Button variant="danger" onClick={() => clearCarrito()}>
+                    Cancelar todo
+                  </Button>
+                </Col>
+                <Col className="d-flex justify-content-center">
+                  <Button variant="success" onClick={() => realizarCompra()}>
+                    Comprar
+                  </Button>
+                </Col>
               </Row>
-              
-              
             </Form>
           </Modal.Body>
         </Modal>
-
       </nav>
     </>
   );
