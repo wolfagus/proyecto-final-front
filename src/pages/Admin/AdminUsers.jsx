@@ -27,7 +27,7 @@ const AdminUsers = () => {
     };
     fetchUser();
     setLoading(false);
-  }, []);
+  }, [users]);
 
   useEffect(() => {
     const search = users.filter((prod) =>

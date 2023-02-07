@@ -7,14 +7,15 @@ import { useEffect } from 'react';
 
 
 function App() {
-  const { setContextState } = useContextState();
+  const { contextState,setContextState } = useContextState();
 
   useEffect(() => {
     const haveUser = getLocalStorage('token');
+    const haveUserData = getLocalStorage('user');
     if (haveUser) {
       setContextState({ type: ActionTypes.SET_USER_LOGIN, value: true });
+      setContextState({ type: ActionTypes.SET_USER_DATA, value: haveUserData });
     }
-    
   }, []);
 
   return (

@@ -1,5 +1,6 @@
 import clientAxios from '../config/clientAxios';
 
+
 export const getAllProducts = async () => {
   try {
     return await clientAxios.get('/allProducts')
