@@ -12,6 +12,7 @@ import "./admin.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import { FaRegTrashAlt, FaUserEdit } from "react-icons/fa";
 import swal from "sweetalert";
+import "./admin.css";
 
 const AdminMenu = () => {
   const [productos, setProductos] = useState([]);
@@ -30,7 +31,7 @@ const AdminMenu = () => {
     };
     fetchProducts();
     setLoading(false);
-  }, []);
+  }, [productos]);
 
   useEffect(() => {
     const search = productos.filter((prod) =>
@@ -47,19 +48,17 @@ const AdminMenu = () => {
       icon: "warning",
       buttons: ["CANCELAR", "ACEPTO"],
       dangerMode: true,
-    })
-    .then((res) => {
+    }).then((res) => {
       if (res) {
         swal("El menu ha sido eliminado!", {
           icon: "success",
         });
         deleteProduct(id);
-       navigate("/admin/menu")
-       window.location.reload();
+        navigate("/admin/menu");
       } else {
         swal("Cancelaste la eliminación!");
       }
-    })
+    });
     setLoading(false);
   };
 
@@ -67,8 +66,8 @@ const AdminMenu = () => {
     <div className="admin">
       <div className="flex">
         <Sidebar />
-        <Container fluid className="content">
-          <div className="container mt-5">
+        <Container className="content">
+          <div className="container text-white mt-5">
             <h1 className="text-center mb-4">MENÚS</h1>
             <button
               className="btn btn-primary my-3"
@@ -98,7 +97,7 @@ const AdminMenu = () => {
                   <thead className="tHeadFormat">
                     <tr>
                       <th>#</th>
-                      <th>Imagen</th>
+                      <th className="th-image">Imagen</th>
                       <th>Nombre</th>
                       <th>Precio</th>
                       <th>Stock</th>
@@ -108,9 +107,15 @@ const AdminMenu = () => {
                   </thead>
                   <tbody>
                     {productosSearch.map((producto, index) => (
-                      <tr>
+                      producto.isActive &&  <tr>
                         <td>{++index}</td>
-                        <td>{producto.images}</td>
+                        <td className="td-image">
+                          <img
+                            src={producto.images}
+                            className="img_menu"
+                            alt=""
+                          />
+                        </td>
                         <td>{producto.title}</td>
                         <td>{producto.price}</td>
                         <td>{producto.stock}</td>
@@ -136,6 +141,7 @@ const AdminMenu = () => {
                           </Button>
                         </td>
                       </tr>
+                      
                     ))}
                   </tbody>
                 </Table>

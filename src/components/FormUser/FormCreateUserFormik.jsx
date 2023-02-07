@@ -18,29 +18,29 @@ const FormRegister = () => {
       validationSchema={schemaFormRegister}
       onSubmit={async (values, actions) => {
         const {data} = await userRegister({
-          email: values.email,
           password: values.password,
-          name: values.name,
-          role: values.role,
+          email: values.email,
+          name: values.name
         })
+        console.log(data)
         setContextState({
           type: ActionTypes.SET_USER_LOGIN,
           value: true,
         })
         setContextState({
           type: ActionTypes.SET_USER_DATA,
-          value: data.userData,
+          value: data.saveUser.email,
         })
-        setLocalStorage('token', data.token)
-        setLocalStorage('user', data.userData)
-        navigate('/verify-account')
+        setLocalStorage('token', data.activeToken)
+        setLocalStorage('user', data.saveUser.role)
+        
         actions.resetForm();
       }}
       initialValues={{
         name: '',
         email: '',
         password: '',
-        role: 'CLIENTE',
+        role: 'CLIENT',
         terms: false,
       }}
     >
@@ -89,7 +89,7 @@ const FormRegister = () => {
           </Row>
           <Row>
             <Form.Group as={Col} md="6" controlId="validationFormikPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Contraseña</Form.Label>
               <Form.Control
                 type="password"
                 name="password"
@@ -104,31 +104,12 @@ const FormRegister = () => {
                 {errors.password}
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group as={Col} md="6" controlId="validationFormikRole">
-              <Form.Label>Rol</Form.Label>
-              <Form.Select
-                type="text"
-                name="role"
-                value={values.role}
-                onChange={handleChange}
-                isValid={touched.role && !errors.role}
-                isInvalid={!!errors.role}
-                feedback={errors.role}
-                feedbackType="invalid"
-              >
-              <option>CLIENTE</option>
-              <option>ADMIN</option>
-              </Form.Select>
-              <Form.Control.Feedback type="invalid">
-                {errors.role}
-              </Form.Control.Feedback>
-            </Form.Group>
           </Row>
           <Form.Group className="mb-3 mt-3">
             <Form.Check
               required
               name="terms"
-              label="Agree to terms and conditions"
+              label="Aceptar terminos y condiciones"
               onChange={handleChange}
               isInvalid={!!errors.terms}
               feedback={errors.terms}
@@ -136,7 +117,7 @@ const FormRegister = () => {
               id="validationFormik0"
             />
           </Form.Group>
-          <Button type="submit" disabled={isSubmitting}>Registrarse</Button>
+          <Button className='bg-transparent border-0' type="submit" disabled={isSubmitting}>Registrarse</Button>
         </Form>
       )}
     </Formik>

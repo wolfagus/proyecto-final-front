@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 export const schemaFormRegister = yup.object().shape({
   name: yup.string().required('Campo obligatorio'),
-  email: yup.string().email('El mail es inválido').required('Complete este campo obligatorio'),
+  email: yup.string().email('El mail es inválido').required('Campo obligatorio'),
   password: yup
     .string()
     .required('Complete este campo obligatorio')
@@ -15,7 +15,7 @@ export const schemaFormLogin = yup.object().shape({
   email: yup.string().email('El mail es inválido').required('Campo obligatorio'),
   password: yup
     .string()
-    .required('Complete este campo obligatorio')
+    .required('Campo obligatorio')
     .min(8, 'Debe tener minimo 8 caracteres')
     .matches(/[a-zA-Z]/, 'Debe tener minuculas y mayúsculas'),
 });
