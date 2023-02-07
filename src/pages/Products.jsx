@@ -4,6 +4,7 @@ import { getAllProducts } from "../services/productService";
 import Loader from "../components/Loader/Loader";
 import { ActionTypes, useContextState } from "../context/contextState";
 import { Link } from "react-router-dom";
+import '../components/Product-card/ProductCard.css'
 
 const Products = () => {
   const {contextState, setContextState } = useContextState();
@@ -90,12 +91,12 @@ const Products = () => {
                         {producto.title}{" "}
                       </Link>{" "}
                     </h5>
-                    <div className="d-flex align-items-center justify-content-between">
-                      <span className="product__price mt-4">
-                        {" "}
+                    <div className="d-flex align-items-center justify-content-evenly content-price-cart">
+                      <span className="product__price">
+                        {" $ "}
                         {producto.price}{" "}
                       </span>
-                      <button className="addTOCart__btn d-flex btn-light mt-4"onClick={() => addCarrito(producto)}>
+                      <button className="addTOCart__btn d-flex btn-light mt-2"onClick={() => addCarrito(producto)}>
                         Añadir al carrito
                       </button>
                     </div>

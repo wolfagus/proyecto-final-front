@@ -36,7 +36,12 @@
 
 @media only screen and (max-width:768px) {
     .product__img {
-        width: 27px;
-        margin: auto;
+        margin-bottom: 20px;
+    }
+    .product__content h5 {
+        font-size: 1rem;
+    }
+    .content-price-cart {
+        flex-direction: column;
     }
 }
