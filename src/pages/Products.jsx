@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
-import ProductCard from "../components/Product-card/ProductCard";
-import { useNavigate } from "react-router-dom";
+import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { getAllProducts } from "../services/productService";
 import Loader from "../components/Loader/Loader";
-import { ActionTypes, initialState, useContextState } from "../context/contextState";
+import { ActionTypes, useContextState } from "../context/contextState";
 import { Link } from "react-router-dom";
-import { setLocalStorage } from "../utils/localStorageHelper";
 
 const Products = () => {
   const {contextState, setContextState } = useContextState();
@@ -14,8 +11,7 @@ const Products = () => {
   const [productosSearch, setProductosSearch] = useState([]);
   const [loading, setLoading] = useState(false);
   const [term, setTerm] = useState("");
-  const navigate = useNavigate();
-  const [category, setCategory] = useState("ALL");
+
  
   useEffect(() => {
     setLoading(true);
@@ -26,7 +22,7 @@ const Products = () => {
     };
     fetchProducts();
     setLoading(false);
-  }, []);
+  }, [productos]);
   useEffect(() => {
     const search = productos.filter((prod) =>
       prod.title.toLowerCase().includes(term.toLowerCase())
@@ -35,7 +31,6 @@ const Products = () => {
   }, [term, productos]);
 
 
-  const allProductos = initialState.carrito
   const addCarrito = (producto) => {
     setContextState({
       type: ActionTypes.SET_ADD_CARRITO,
@@ -76,6 +71,7 @@ const Products = () => {
 
 
             {productosSearch.map((producto) => (
+              producto.isActive && 
               <Col lg="4" md="4" className="mt-5">
                 <Col className="product__item" key={producto._id}>
                   <div style={{ width: "18rem" }} className="product__img">

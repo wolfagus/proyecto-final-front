@@ -4,7 +4,7 @@ import { useContextState } from '../context/contextState';
 const PrivateRoutes = ({children}) => {
   const { contextState } = useContextState();
   return (
-    contextState.userLogged && contextState.userData.role === 'ADMIN' ? children : <Navigate to='/' />
+    contextState.userData.role === 'ADMIN' ? children : <Navigate to='/' />
   )
 }
 

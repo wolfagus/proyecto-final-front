@@ -10,8 +10,12 @@ import { Button, Col, Modal, Row } from "react-bootstrap";
 import ModalCustom from "../modalCustom/ModalCustom";
 import Form from "react-bootstrap/Form";
 import { comprarProductos } from "../../services/carritoService";
+import swal from "sweetalert";
+import { useEffect } from "react";
+import { getLocalStorage } from "../../utils/localStorageHelper";
 
 const Navbar = () => {
+  const { contextState, setContextState } = useContextState();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -32,7 +36,7 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalLogin, setShowModalLogin] = useState(false);
 
-  const { contextState, setContextState } = useContextState();
+
   const [click, setClick] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
 
@@ -46,13 +50,13 @@ const Navbar = () => {
     });
   };
   let total = 0
-  for (var i = 0; i < contextState.carrito.length; i++) {
+  for (let i = 0; i < contextState.carrito.length; i++) {
     let price = contextState.carrito[i].price
     total = total + price
   }
 
  let  titlePedido = ''
-  for (var i = 0; i < contextState.carrito.length; i++) {
+  for (let i = 0; i < contextState.carrito.length; i++) {
     let name = contextState.carrito[i].title
     titlePedido = `${titlePedido} + ${name}` 
   }
@@ -63,8 +67,14 @@ const Navbar = () => {
   }
 
   const realizarCompra = async() => {
-    const { data } = await comprarProductos(newPedido);
-    console.log(data)
+    if(total > 0){
+      const { data } = await comprarProductos(newPedido);
+    swal("Compra en proceso", "por favor revise su correo electronico para continuar");
+    clearCarrito()
+    } else {
+      swal("Error", "no hay ningun producto en el carrito");
+    }
+    
   }
 
   // const onMouseEnter = () => {
@@ -160,28 +170,29 @@ const Navbar = () => {
                   <ButtonLogin/>         
               </li>
             )}
-              {contextState.userLogged && contextState.userData.role === "ADMIN" && (
-              <li>
-                <Link to='/admin' className='nav-links-admin'>
-                  Panel Admin <GrUserAdmin/>
-                </Link>
-              </li>
-              )}
+            {contextState.userData.role === "ADMIN" && (
+                <li>
+                  <Link to='/admin' className='nav-links-admin'>
+                    Panel Admin <GrUserAdmin/>
+                  </Link>
+                </li>
+                )}
+              
+
             </ul>
 
-
-              
-        {contextState.userLogged ? (
-          <li className="ml-5">
+            {contextState.userLogged ? (
+          <li className="ml-1">
             {" "}
             <Button variant="primary" onClick={handleShow}>
               <i class="fa-solid fa-cart-shopping text-white"></i>
             </Button>{" "}
           </li>
-        ) : null}
+        ): null}
+              
+
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title></Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Row >
@@ -192,12 +203,22 @@ const Navbar = () => {
               <p className="text-dark">Total ${total}</p>
             </Row>
             <Form>
-              <Button variant="secondary" onClick={()=>clearCarrito()}>
+              <Row className="justify-content-around">
+                <Col className="d-flex justify-content-center">
+              <Button variant="danger" onClick={()=>clearCarrito()}>
                 Cancelar todo
               </Button>
-              <Button variant="primary"  onClick={()=> realizarCompra()}  >
+              </Col>
+              <Col className="d-flex justify-content-center">              
+              <Button variant="success"  onClick={()=> realizarCompra()}  >
                 Comprar
               </Button>
+              </Col>
+
+
+              </Row>
+              
+              
             </Form>
           </Modal.Body>
         </Modal>

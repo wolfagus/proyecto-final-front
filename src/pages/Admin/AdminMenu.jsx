@@ -31,7 +31,7 @@ const AdminMenu = () => {
     };
     fetchProducts();
     setLoading(false);
-  }, []);
+  }, [productos]);
 
   useEffect(() => {
     const search = productos.filter((prod) =>
@@ -107,8 +107,7 @@ const AdminMenu = () => {
                   </thead>
                   <tbody>
                     {productosSearch.map((producto, index) => (
-                      <tr>
-                        {console.log(producto)}
+                      producto.isActive &&  <tr>
                         <td>{++index}</td>
                         <td className="td-image">
                           <img
@@ -142,6 +141,7 @@ const AdminMenu = () => {
                           </Button>
                         </td>
                       </tr>
+                      
                     ))}
                   </tbody>
                 </Table>

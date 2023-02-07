@@ -1,7 +1,6 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Admin from "../pages/Admin/Admin";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer";
 import PrivateRoutes from "./PrivateRoutes";
@@ -12,20 +11,9 @@ import MenuEdit from "../pages/Admin/MenuEdit";
 import Products from "../pages/Products";
 import AboutUs from "../pages/About-Us/AboutUs";
 import NotFound from "../pages/NotFound";
-import { ActionTypes, useContextState } from "../context/contextState";
-import { useEffect } from "react";
-import { getLocalStorage } from "../utils/localStorageHelper";
+import Pedidos from "../pages/Admin/pedidos";
 
 const PublicRoutes = () => {
-  const { setContextState, contextState } = useContextState();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const userData = getLocalStorage("user");
-    if (userData) {
-      setContextState({ type: ActionTypes.SET_USER_DATA, value: userData });
-    }
-  }, []);
 
   return (
     <>
@@ -33,7 +21,7 @@ const PublicRoutes = () => {
       <Routes>
         {
           <Route path="/" element={<Home />} />
-          /* <Route path="/verify-account" element={<VerifyAccount />} />*/
+
         }
         <Route path="/about-us" element={<AboutUs />} />
         <Route
@@ -49,6 +37,14 @@ const PublicRoutes = () => {
           element={
             <PrivateRoutes>
               <AdminUsers />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/admin/orders"
+          element={
+            <PrivateRoutes>
+              <Pedidos />
             </PrivateRoutes>
           }
         />
