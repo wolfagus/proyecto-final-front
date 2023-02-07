@@ -1,12 +1,13 @@
 import React from 'react'
-import './Navbar/Navbar.css';
+import "../Navbar/Navbar.css";
+import "./Footer.css";
 
 
 const Footer = () => {
   return (
     <>
-    <div className="container-75 bg-dark">
-  <footer className="d-flex flex-wrap justify-content-around align-items-center py-3 my-0 border-top">
+    <div className="container-75 ">
+  <footer className="d-flex flex-wrap color-bg justify-content-around align-items-center py-3 my-0 border-top">
     <div className="col-md-4 d-flex align-items-center">
       <div className='brand-logo mx-3 fs-1 text-muted'>Mr. Chef</div>
       <span className="mb-3 mb-md-0 text-muted">© 2023 Company, Inc</span>
