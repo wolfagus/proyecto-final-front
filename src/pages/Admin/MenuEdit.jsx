@@ -26,8 +26,7 @@ const MenuEdit = () => {
     <div className="admin">
       <div className='flex'>
       <Sidebar />
-      <Container className='content' fluid>
-      <h1 className="text-center">USUARIOS</h1>
+      <Container className='content text.white' fluid>
       <FormCreateMenu isEdit producto={producto} isEditLoading={loading} productId={id}/>
       </Container>
       </div>

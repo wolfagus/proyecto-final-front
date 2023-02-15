@@ -23,7 +23,7 @@ const Products = () => {
     };
     fetchProducts();
     setLoading(false);
-  }, [productos]);
+  }, []);
   useEffect(() => {
     const search = productos.filter((prod) =>
       prod.title.toLowerCase().includes(term.toLowerCase())
@@ -39,8 +39,6 @@ const Products = () => {
   };
 
   return (
-    <Loader isLoading={loading}>
-      <section>
         <Container>
           <Row>
             <Col lg="12" className="text-center">
@@ -64,13 +62,6 @@ const Products = () => {
             </Col>
           </Row>
           <Row>
-
-
-
-
-
-
-
             {productosSearch.map((producto) => (
               producto.isActive && 
               <Col lg="4" md="4" className="mt-5">
@@ -106,8 +97,6 @@ const Products = () => {
             ))}
           </Row>
         </Container>
-      </section>
-    </Loader>
   );
 };
 

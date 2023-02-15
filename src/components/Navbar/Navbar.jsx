@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ButtonLogin from "./ButtonLogin";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import "./Navbar.css";
 import FormRegister from "../FormUser/FormCreateUserFormik";
@@ -10,7 +10,6 @@ import ModalCustom from "../modalCustom/ModalCustom";
 import Form from "react-bootstrap/Form";
 import { comprarProductos } from "../../services/carritoService";
 import swal from "sweetalert";
-import { useEffect } from "react";
 import { getLocalStorage } from "../../utils/localStorageHelper";
 
 const Navbar = () => {
@@ -89,22 +88,6 @@ const Navbar = () => {
     }
   };
 
-  // const onMouseEnter = () => {
-  //   if (window.innerWidth > 960) {
-  //     setDropdown(false);
-  //   } else {
-  //     setDropdown(true);
-  //   }
-  // };
-
-  // const onMouseLeave = () => {
-  //   if (window.innerWidth < 960) {
-  //     setDropdown(false);
-  //   } else {
-  //     setDropdown(false);
-  //   }
-  // };
-
   return (
     <>
       <nav className="navbars">
@@ -134,8 +117,6 @@ const Navbar = () => {
           </li>
           <li
             className="nav-item"
-            // onMouseEnter={onMouseEnter}
-            // onMouseLeave={onMouseLeave}
           >
             <Link
               to="/Products"
@@ -143,9 +124,9 @@ const Navbar = () => {
               onClick={closeMobileMenu}
             >
               Productos
-              {/* Productos <i className='fas fa-caret-down' /> */}
+              
             </Link>
-            {/* {dropdown && <Dropdown />} */}
+            
           </li>
           <li className="nav-item">
             <Link
@@ -156,11 +137,6 @@ const Navbar = () => {
               Quiénes somos
             </Link>
           </li>
-          {/* <li className='nav-item'>
-            <Link to='/Login' className='navs-links-nobile' onClick={closeMobileMenu}>
-              Iniciar sesion
-            </Link>
-          </li> */}
 
           <li className="ml-5">
             <Button
@@ -180,7 +156,7 @@ const Navbar = () => {
               <ButtonLogin />
             </li>
           )}
-          {contextState.userData.role && (
+          {contextState.userData.role  == 'ADMIN'&& (
             <li>
               <Button className="nav-links-admin" onClick={() => goToAdmin()}>
                   Panel Admin <GrUserAdmin />
@@ -200,17 +176,17 @@ const Navbar = () => {
         ) : null}
 
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton></Modal.Header>
+          <Modal.Header closeButton className="bg-secondary"></Modal.Header>
           <Modal.Body>
             <Row>
               {contextState.carrito.map((producto) => (
                 <Row key={producto._id}>
-                  <p className="text-dark">
+                  <p className="text-white fs-6">
                     {producto.title}: ${producto.price}
                   </p>
                 </Row>
               ))}
-              <p className="text-dark">Total ${total}</p>
+              <p className="text-white fs-5">Total ${total}</p>
             </Row>
             <Form>
               <Row className="justify-content-around">
