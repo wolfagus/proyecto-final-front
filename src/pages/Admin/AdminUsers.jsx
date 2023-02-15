@@ -18,24 +18,6 @@ const AdminUsers = () => {
   const [createUser, setCreateUser] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(true);
-    const fetchUser = async () => {
-      const { data } = await getAllUser();
-      setUsers(data);
-      setUserSearch(data);
-    };
-    fetchUser();
-    setLoading(false);
-  }, [users]);
-
-  useEffect(() => {
-    const search = users.filter((prod) =>
-      prod.name.toLowerCase().includes(term.toLowerCase())
-    );
-    setUserSearch(search);
-  }, [term, users]);
-
   const deleteUsuario = async (_id) => {
     setLoading(true);
     swal({
@@ -57,14 +39,25 @@ const AdminUsers = () => {
     });
     setLoading(false);
   };
-
-  /*   const deleteUsuario = async (_id) => {
+  useEffect(() => {
     setLoading(true);
-    await deleteUser(_id);
-    const filteredUsers = users.filter((user) => user._id !== _id);
-    setUsers(filteredUsers);
+    const fetchUser = async () => {
+      const { data } = await getAllUser();
+      setUsers(data);
+      setUserSearch(data);
+    };
+    fetchUser();
     setLoading(false);
-  }; */
+  }, [deleteUsuario]);
+
+  useEffect(() => {
+    const search = users.filter((prod) =>
+      prod.name.toLowerCase().includes(term.toLowerCase())
+    );
+    setUserSearch(search);
+  }, [term, users]);
+
+  
 
   return (
     <div className="admin">

@@ -3,38 +3,28 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { useNavigate } from 'react-router-dom';
-import { ActionTypes, useContextState } from '../../context/contextState';
+import swal from 'sweetalert';
 import { userRegister } from '../../services/userService';
-import { setLocalStorage } from '../../utils/localStorageHelper';
 import { schemaFormRegister } from '../../utils/ValidatedForms/validatedForms';
 import "./formCreateUser.css";
 
 const FormRegister = () => {
-  const { setContextState } = useContextState();
-  const navigate = useNavigate();
   return (
     <Formik
       validationSchema={schemaFormRegister}
       onSubmit={async (values, actions) => {
-        const {data} = await userRegister({
+        try {
+          const {data} = await userRegister({
           password: values.password,
           email: values.email,
           name: values.name
         })
-        console.log(data)
-        setContextState({
-          type: ActionTypes.SET_USER_LOGIN,
-          value: true,
-        })
-        setContextState({
-          type: ActionTypes.SET_USER_DATA,
-          value: data.saveUser.email,
-        })
-        setLocalStorage('token', data.activeToken)
-        setLocalStorage('user', data.saveUser.role)
-        
         actions.resetForm();
+        swal("Por favor verifique su casilla correo para confirmar su cuenta");
+        } catch (error) {
+          swal("El correo electronico ya se encuentra registrado");
+        }
+        
       }}
       initialValues={{
         name: '',
@@ -60,6 +50,8 @@ const FormRegister = () => {
                 type="text"
                 name="name"
                 value={values.name}
+                minlength='4'
+                maxlength='20'
                 onChange={handleChange}
                 isValid={touched.name && !errors.name}
                 isInvalid={!!errors.name}
@@ -95,6 +87,8 @@ const FormRegister = () => {
                 name="password"
                 value={values.password}
                 onChange={handleChange}
+                minlength='8'
+                maxlength='15'
                 isValid={touched.password && !errors.password}
                 isInvalid={!!errors.password}
                 feedback={errors.password}

@@ -4,7 +4,7 @@ const Loader = ({ isLoading, children }) => {
         {isLoading ? (
           <div className="row justify-content-center mt-5">
             <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
+              <span className="visually-hidden text-white">Loading...</span>
             </div>
           </div>
         ) : (

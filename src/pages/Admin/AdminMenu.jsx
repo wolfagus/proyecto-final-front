@@ -31,7 +31,7 @@ const AdminMenu = () => {
     };
     fetchProducts();
     setLoading(false);
-  }, [productos]);
+  }, [deleteProduct]);
 
   useEffect(() => {
     const search = productos.filter((prod) =>

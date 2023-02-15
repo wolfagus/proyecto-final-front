@@ -76,7 +76,8 @@ const FormCreateUser = ({
             <Form.Label className="labelFormUser">Nombre</Form.Label>
             <Form.Control
               className="controlFormUser"
-              required
+              minlength='2'
+              maxlength='20'
               type="text"
               value={newUser?.name}
               onChange={(e) => handleChange(e)}
@@ -105,15 +106,6 @@ const FormCreateUser = ({
               <option>ADMIN</option>
               <option>CLIENTE</option>
             </Form.Select>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="password">
-            <Form.Label className="labelFormUser">Password</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              value={newUser?.password}
-              onChange={(e) => handleChange(e)}
-            />
           </Form.Group>
           <Button type="submit" onClick={isEdit ? editUser : createUser}>
             {isEdit ? "Editar" : "Agregar"}

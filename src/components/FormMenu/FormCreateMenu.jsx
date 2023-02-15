@@ -60,33 +60,39 @@ const FormCreateMenu = ({
       <Loader isLoading={isLoading || isEditLoading}>
         <Form>
           <Form.Group className="mb-3" controlId="title">
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label className='text-white'>Nombre</Form.Label>
             <Form.Control
+              minlength='4'
+              maxlength='20'
+              required
               type="text"
               value={newProduct?.title}
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="price">
-            <Form.Label>Precio</Form.Label>
+            <Form.Label className='text-white'>Precio</Form.Label>
             <Form.Control
-              type="text"
+              required
+              type="number"
               value={newProduct?.price}
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="images">
-            <Form.Label>Imágen</Form.Label>
+            <Form.Label className='text-white'>Imágen</Form.Label>
             <Form.Control
+              required
               type="text"
               value={newProduct?.images}
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="stock">
-            <Form.Label>Stock</Form.Label>
+            <Form.Label className='text-white'>Stock</Form.Label>
             <Form.Control
-              type="text"
+              required
+              type="number"
               value={newProduct?.stock}
               onChange={(e) => handleChange(e)}
             />
@@ -94,6 +100,7 @@ const FormCreateMenu = ({
           <Form.Group className="mb-3" controlId="categories">
             <Form.Label className="labelFormUser">Categoria</Form.Label>
             <Form.Select
+              required
               type="text"
               value={newProduct?.categories}
               onChange={(e) => handleChange(e)}

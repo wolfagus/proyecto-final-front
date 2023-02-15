@@ -10,6 +10,7 @@ import { userLogin } from "../../services/userService";
 import { setLocalStorage } from "../../utils/localStorageHelper";
 import { useNavigate } from "react-router-dom";
 import { ActionTypes, useContextState } from "../../context/contextState";
+import swal from "sweetalert";
 
 const ButtonLogin = () => {
   const { setContextState } = useContextState();
@@ -31,10 +32,13 @@ const ButtonLogin = () => {
           <Formik
             validationSchema={schemaFormLogin}
             onSubmit={async (values, actions) => {
-              const { data } = await userLogin({
+              try {
+                const { data } = await userLogin({
                 email: values.email,
                 password: values.password,
-              });
+              }
+              );
+              console.log(data)
               setContextState({
                 type: ActionTypes.SET_USER_LOGIN,
                 value: true,
@@ -50,11 +54,14 @@ const ButtonLogin = () => {
                 navigate("/admin/clients");
               }
               actions.resetForm();
+              } catch (error) {
+                swal("Verifique que los datos ingresados sean correctos o que su correo electronico este verificado");
+              }
+              
             }}
             initialValues={{
               email: "",
               password: "",
-              terms: false,
             }}
           >
             {({
@@ -76,7 +83,13 @@ const ButtonLogin = () => {
                       placeholder="ejemplo@ejemplo.com"
                       onChange={handleChange}
                       isValid={touched.email && !errors.email}
+                      isInvalid={!!errors.email}
+                      feedback={errors.email}
+                      feedbackType="invalid"
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.email}
+                    </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
                 <Row className="mb-3">
@@ -93,24 +106,11 @@ const ButtonLogin = () => {
                       feedback={errors.password}
                       feedbackType="invalid"
                     />
-
                     <Form.Control.Feedback type="invalid">
                       {errors.password}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
-                <Form.Group className="mb-3">
-                  <Form.Check
-                    required
-                    name="terms"
-                    label="Acepto términos y condiciones"
-                    onChange={handleChange}
-                    isInvalid={!!errors.terms}
-                    feedback={errors.terms}
-                    feedbackType="invalid"
-                    id="validationFormik0"
-                  />
-                </Form.Group>
                 <div className="d-flex justify-content-around">
                   <Button variant="danger" onClick={handleClose}>
                     Cancelar
@@ -118,8 +118,7 @@ const ButtonLogin = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    onClick={handleClose}
-                  >
+                    onClick={handleClose}>
                     Ingresar
                   </Button>
                 </div>
