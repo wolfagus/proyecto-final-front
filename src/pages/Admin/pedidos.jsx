@@ -62,7 +62,7 @@ const  Pedidos = () => {
                         <td>{++index}</td>
                         <td>{producto.detalles.map((Prod) => `${Prod.title} +  `)}</td>
                         <td>{producto.price}</td>
-                        <td>{producto.isApproved ? 'Aprovado' : 'Pendiente'}</td>
+                        <td>{producto.isApproved ? 'Aprobado' : 'Pendiente'}</td>
                         <td>
                           <Button
                             type="button"
