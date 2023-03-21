@@ -48,11 +48,11 @@ const FormCreateUser = ({
     const { data } = await userRegister({ ...newUser });
     setNewUser({});
     const allUsers = [...users, data];
-    console.log('User created');
+    console.log("User created");
     setUsers(allUsers);
     setIsLoading(false);
     setCreateUser(false);
-    navigate("/admin/clients")
+    navigate("/admin/clients");
     window.location.reload();
   };
 
@@ -76,8 +76,8 @@ const FormCreateUser = ({
             <Form.Label className="labelFormUser">Nombre</Form.Label>
             <Form.Control
               className="controlFormUser"
-              minlength='2'
-              maxlength='20'
+              minlength="2"
+              maxlength="20"
               type="text"
               value={newUser?.name}
               onChange={(e) => handleChange(e)}
@@ -97,16 +97,16 @@ const FormCreateUser = ({
           </Form.Group>
           <Form.Group className="mb-3" controlId="role">
             <Form.Label className="labelFormUser">Rol</Form.Label>
-
-            <Form.Select
-              type="text"
-              value={newUser?.role}
+            <Form.Control
+              as="select"
+              value={newUser.role}
               onChange={(e) => handleChange(e)}
             >
               <option>ADMIN</option>
               <option>CLIENTE</option>
-            </Form.Select>
+            </Form.Control>
           </Form.Group>
+
           <Button type="submit" onClick={isEdit ? editUser : createUser}>
             {isEdit ? "Editar" : "Agregar"}
           </Button>
